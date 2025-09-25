@@ -1,6 +1,10 @@
-function up()
-{
-    alert("it happened");
+// Function that runs when this script is loaded
+function showParticleAlert(message) {
+alert("Particle says: " + message);
 }
 
-
+// Data received from Particle (from IFTTT Value1)
+const particleData = {
+message: "{{Value1}}",
+timestamp: "{{OccurredAt}}"
+};
