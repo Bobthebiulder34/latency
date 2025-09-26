@@ -1,37 +1,35 @@
-// Listen to Particle events (real-time)
-function listenToParticle() {
-    const deviceId = "0a10aced202194944a0540c4";   // your device ID
-    const token = "53c84e0f44ea8e64df246fd365bb7e0dbb50ce46"; // your access token
+// IMPORTANT: Do NOT hardcode access tokens in source. Load them from a secure
+// location instead (environment variable, server-side proxy, or secret manager).
+// Replace the placeholder below with your own secure retrieval method.
+const PARTICLE_ACCESS_TOKEN = process?.env?.PARTICLE_ACCESS_TOKEN || "<REPLACE_WITH_YOUR_TOKEN_OR_FETCH_FROM_SERVER>";
 
-    // Open a live connection to Particle's event stream
-    const eventSource = new EventSource(
-        `https://api.particle.io/v1/devices/events?access_token=${token}`
-    );
+// Connect to Particle Cloud event stream
+const eventSource = new EventSource(
+  `https://api.particle.io/v1/devices/events?access_token=${PARTICLE_ACCESS_TOKEN}`
+);
 
-    eventSource.onmessage = function(event) {
-        const data = JSON.parse(event.data);
-        console.log("Raw event:", data);
-        alert("HII");
-        // Only react if this came from *your* device
-        if (data.coreid === deviceId) {
-            // Show it on screen
-            showParticleAlert(data.data);
-        }
-    };
+// Listen for all events
+eventSource.onmessage = function(event) {
+  const data = JSON.parse(event.data);
 
-    eventSource.onerror = function(err) {
-        console.error("Event stream error:", err);
-    };
-}
+  // Only handle the specific event you published from Particle
+  if (data.event === "ifttt_upload") {
+    const content = data.data; // Payload from Particle.publish()
+    
+    console.log("New Particle event:", content);
 
-// Show alert when event comes in
-function showParticleAlert(message) {
-    alert("New IFTTT upload: " + message);
-}
+    // Update page content dynamically
+    const display = document.getElementById("particle-output");
+    if (display) {
+      display.textContent = content;
+    }
 
-// Start listening as soon as page loads
-listenToParticle();
-function up()
-{
-    alert("Patience");
-}
+  // Alert example (optional)
+  // alert("Particle says: " + content);
+  }
+};
+
+// Handle connection errors
+eventSource.onerror = function(err) {
+  console.error("EventSource failed:", err);
+};
