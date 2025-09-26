@@ -1,15 +1,37 @@
-// Function that runs when this script is loaded
-function showParticleAlert(message) {
-    alert("Particle says: " + message);
+// Listen to Particle events (real-time)
+function listenToParticle() {
+    const deviceId = "0a10aced202194944a0540c4";   // your device ID
+    const token = "53c84e0f44ea8e64df246fd365bb7e0dbb50ce46"; // your access token
+
+    // Open a live connection to Particle's event stream
+    const eventSource = new EventSource(
+        `https://api.particle.io/v1/devices/events?access_token=${token}`
+    );
+
+    eventSource.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        console.log("Raw event:", data);
+
+        // Only react if this came from *your* device
+        if (data.coreid === deviceId) {
+            // Show it on screen
+            showParticleAlert(data.data);
+        }
+    };
+
+    eventSource.onerror = function(err) {
+        console.error("Event stream error:", err);
+    };
 }
 
-// Data received from Particle (from IFTTT Value1)
-const particleData = {
-    message: "{{Value1}}",
-    timestamp: "{{OccurredAt}}"
-};
+// Show alert when event comes in
+function showParticleAlert(message) {
+    alert("New IFTTT upload: " + message);
+}
 
-// Function that button calls
-function up() {
-    showParticleAlert(particleData.message);
+// Start listening as soon as page loads
+listenToParticle();
+function up()
+{
+    alert("Patience");
 }
