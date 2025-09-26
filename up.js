@@ -11,7 +11,7 @@ function listenToParticle() {
     eventSource.onmessage = function(event) {
         const data = JSON.parse(event.data);
         console.log("Raw event:", data);
-
+        alert("HII");
         // Only react if this came from *your* device
         if (data.coreid === deviceId) {
             // Show it on screen
