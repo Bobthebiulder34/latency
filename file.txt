@@ -1,1 +1,1 @@
-cpu temp 100
+Hello World!
