@@ -3,11 +3,17 @@ on:
   push:
     paths:
       - 'file.txt'
+
+permissions:
+  contents: write
+
 jobs:
   process:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Compile and run processor
         run: |
