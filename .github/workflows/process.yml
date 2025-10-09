@@ -1,0 +1,23 @@
+name: Process File Updates
+on:
+  push:
+    paths:
+      - 'file.txt'
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Compile and run processor
+        run: |
+          g++ texteditor.cpp -o texteditor
+          ./texteditor
+      
+      - name: Commit changes
+        run: |
+          git config user.name "Processor Bot"
+          git config user.email "bot@example.com"
+          git add file.txt creation.txt
+          git commit -m "Processed data and reset file.txt" || echo "No changes"
+          git push
