@@ -1,2 +1,3 @@
 Hello World!
 ssd temp 10
+ssd temp 1
