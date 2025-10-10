@@ -1,3 +1,4 @@
 ssd temp 10
 ssd temp 1
 cpu temp 100
+questing SHA...
