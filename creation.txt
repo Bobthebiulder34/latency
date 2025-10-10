@@ -43,3 +43,4 @@ cpu temp 42
 questing SHA...
 cpu usage 5
 cpu speed 4641
+cpu power 1
