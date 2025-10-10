@@ -24,3 +24,4 @@ cpu power 1
 cpu speed 4641
 cpu power 0
 questing SHA...
+cpu power 2
