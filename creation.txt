@@ -45,3 +45,4 @@ cpu usage 5
 cpu speed 4641
 cpu power 1
 questing SHA...
+cpu speed 4641
