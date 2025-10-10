@@ -1,1 +1,1 @@
-cpu speed 4641
+Hello World!
