@@ -19,3 +19,4 @@ cpu power 3
 cpu speed 4641
 cpu power 1
 cpu power 2
+questing SHA...
