@@ -1,1 +1,1 @@
-cpu power 37
+Hello World!
