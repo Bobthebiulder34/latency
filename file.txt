@@ -1,1 +1,1 @@
-cpu power 3
+Hello World!
