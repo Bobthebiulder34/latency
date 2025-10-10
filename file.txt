@@ -1,1 +1,1 @@
-cpu power 2
+Hello World!
