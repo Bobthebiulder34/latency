@@ -43,3 +43,4 @@ cpu power 0
 questing SHA...
 cpu temp 0
 cpu power 0
+C s -2147483648 not understood
