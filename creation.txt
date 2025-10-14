@@ -28,3 +28,4 @@ cpu usage 5
 cpu speed 4641
 cpu power 1
 cpu speed 4641
+questing SHA...
