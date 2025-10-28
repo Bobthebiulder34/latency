@@ -5,3 +5,4 @@ cpu usage 9
 C s -2147483648 not understood
 cpu temp 0
 cpu usage 11
+gpu temp 51
