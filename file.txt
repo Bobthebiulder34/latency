@@ -1,1 +1,1 @@
-gpu temp 50
+Hello World!
