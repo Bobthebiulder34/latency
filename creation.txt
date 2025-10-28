@@ -2,3 +2,4 @@
 cpu temp 0
 cpu usage 11
 gpu temp 50
+gpu usage 5
