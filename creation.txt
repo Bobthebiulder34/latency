@@ -1,3 +1,4 @@
 
 ssd temp 43
 cpu temp 0
+cpu usage 9
