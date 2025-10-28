@@ -9,3 +9,4 @@ request_sha
 request_sha
 request_sha
 request_sha
+cpu temp 0
