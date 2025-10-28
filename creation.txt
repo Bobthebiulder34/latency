@@ -1,2 +1,3 @@
 
 cpu temp 0
+cpu usage 11
