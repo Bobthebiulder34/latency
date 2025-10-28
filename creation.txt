@@ -1,1 +1,2 @@
 
+ssd temp 43
