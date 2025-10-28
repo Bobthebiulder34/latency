@@ -10,3 +10,4 @@ request_sha
 request_sha
 request_sha
 cpu temp 0
+cpu usage 13
