@@ -12,3 +12,4 @@ gpu temp 51
 cpu temp 0
 cpu usage 17
 gpu temp 52
+cpu temp 0
