@@ -2,3 +2,4 @@
 ssd temp 43
 cpu temp 0
 cpu usage 9
+C s -2147483648 not understood
