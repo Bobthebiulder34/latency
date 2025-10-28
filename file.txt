@@ -1,1 +1,1 @@
-Hello World!
+gpu speed 690
