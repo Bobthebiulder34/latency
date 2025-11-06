@@ -1,2 +1,3 @@
 
 cpu usage 18
+gpu usage 6
