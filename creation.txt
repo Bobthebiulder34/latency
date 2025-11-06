@@ -16,3 +16,4 @@ gpu usage 6
 ssd usage 22
 cpu usage 9
 gpu usage 7
+ssd usage 21
