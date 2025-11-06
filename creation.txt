@@ -33,3 +33,4 @@ ssd usage 21
 cpu usage 14
 gpu usage 7
 ssd usage 26
+cpu usage 4
