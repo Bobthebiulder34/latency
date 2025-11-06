@@ -21,3 +21,4 @@ cpu usage 25
 gpu usage 15
 cpu usage 11
 gpu usage 8
+cpu usage 18
