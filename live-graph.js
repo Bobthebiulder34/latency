@@ -64,7 +64,11 @@ function buildDatasets(metrics) {
 async function initChart() {
     try {
         const { labels, metrics } = await fetchCSV();
-        const ctx = document.getElementById('usageChart').getContext('2d');
+        const canvas = document.getElementById('usageChart');
+        // Make sure canvas fills parent
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+        const ctx = canvas.getContext('2d');
         chart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -73,6 +77,7 @@ async function initChart() {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 animation: false,
                 plugins: {
                     legend: { position: 'top' }
@@ -82,7 +87,12 @@ async function initChart() {
                 }
             }
         });
-
+        // Resize chart on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+            chart.resize();
+        });
         // start polling
         setInterval(pollAndAppend, POLL_INTERVAL_MS);
     } catch (err) {
