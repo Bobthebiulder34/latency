@@ -18,12 +18,8 @@ function parseCSV(text) {
     if (lines.length < 2) return { labels: [], metrics: {} };
     const header = lines[0].split(',').map(s => s.trim());
     const sampleCount = header.length - 1;
-    // Generate timestamps for each sample, assuming 5 min apart, most recent is now
-    const now = new Date();
-    const labels = Array.from({ length: sampleCount }, (_, i) => {
-        const d = new Date(now.getTime() - (sampleCount - 1 - i) * 5 * 60 * 1000);
-        return `Sample taken at ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
-    });
+    // Label samples as '5 minutes', '10 minutes', ...
+    const labels = Array.from({ length: sampleCount }, (_, i) => `${(i + 1) * 5} minutes`);
     const metrics = {};
     for (let i = 1; i < lines.length; i++) {
         const parts = lines[i].split(',').map(s => s.trim());
