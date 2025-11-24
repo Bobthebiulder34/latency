@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Particle Event Listener</title>
 </head>
+
 <body>
   <h1>Particle Event Output</h1>
   <p id="particle-output">Waiting for updates...</p>
+
+  <!-- Chart canvas -->
+  <div style="max-width:900px; margin:20px 0;">
+    <canvas id="usageChart" width="800" height="300"></canvas>
+  </div>
+
   <script src="up.js"></script>
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Live graph updater -->
+  <script src="live-graph.js"></script>
 </body>
+
 </html>
