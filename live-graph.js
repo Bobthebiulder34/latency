@@ -6,11 +6,43 @@ const POLL_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 let chart = null;
 
 async function fetchCSV() {
-    // cache-bust so browsers don't return a cached CSV
+    // Try to fetch creation.txt first, parse it, and generate CSV data
+    try {
+        const res = await fetch(`creation.txt?_=${Date.now()}`);
+        if (res.ok) {
+            const text = await res.text();
+            return parseCreationTxt(text);
+        }
+    } catch (err) {
+        console.log('creation.txt not found, falling back to sample.csv');
+    }
+    // Fallback to sample.csv if creation.txt doesn't exist
     const res = await fetch(`sample.csv?_=${Date.now()}`);
     if (!res.ok) throw new Error('Failed to fetch sample.csv: ' + res.status);
     const text = await res.text();
     return parseCSV(text);
+}
+
+function parseCreationTxt(text) {
+    const lines = text.trim().split(/\r?\n/).filter(l => l.trim());
+    const samples = [];
+    for (let i = 0; i < lines.length; i += 3) {
+        const chunk = lines.slice(i, i + 3);
+        if (chunk.length === 3) {
+            const cpu = parseInt(chunk[0].match(/\d+$/)[0]);
+            const gpu = parseInt(chunk[1].match(/\d+$/)[0]);
+            const ssd = parseInt(chunk[2].match(/\d+$/)[0]);
+            samples.push({ cpu, gpu, ssd });
+        }
+    }
+    const sampleCount = samples.length;
+    const labels = Array.from({ length: sampleCount }, (_, i) => `${(i + 1) * 5} minutes`);
+    const metrics = {
+        cpu: samples.map(s => s.cpu),
+        gpu: samples.map(s => s.gpu),
+        ssd: samples.map(s => s.ssd)
+    };
+    return { labels, metrics };
 }
 
 function parseCSV(text) {
