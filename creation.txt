@@ -61,8 +61,8 @@ gpu usage 80
 ssd usage 90
 cpu usage 21
 gpu usage 6
-ssd usage 100
-cpu usage 8
+ssd usage 116
+cpu usage 70
 gpu usage 14
 ssd usage 100
 cpu usage 7
